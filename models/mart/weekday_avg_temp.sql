@@ -5,7 +5,7 @@ with total_avg as (
          MAX(maxtemp_c) AS max_temp_week,
          MIN(mintemp_c) AS min_temp_week
     from {{ref('prep_temp')}}
-    group by year, month, country, city
+    group by week, year, month, country, city
 )
 
 select *
