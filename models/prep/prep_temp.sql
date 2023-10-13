@@ -6,7 +6,7 @@ add_weekday AS (
     SELECT *,
         to_char(date, 'Day') AS weekday, 
         to_char(date, 'DD') AS day_num 
-    FROM temp_daily
+    FROM temperature_daily
 )
 SELECT *
 FROM add_weekday
