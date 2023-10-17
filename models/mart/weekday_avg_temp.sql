@@ -27,3 +27,6 @@ FROM {{ref('prep_temp')}} AS t
 LEFT JOIN weekly_avg AS w USING (city, country, year, week)
 LEFT JOIN monthly_avg AS m USING (city, country, year, month)
 GROUP BY t.city, t.country, t.year, t.weekday
+)
+SELECT *
+FROM weekly_avg
