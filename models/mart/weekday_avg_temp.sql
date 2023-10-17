@@ -32,4 +32,4 @@ UNION ALL
 SELECT 
     city, country, year, month, NULL AS weekday,
     avg_temp_month, max_temp_month, min_temp_month
-FROM monthly_avg;
+FROM monthly_avg
