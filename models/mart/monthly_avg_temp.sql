@@ -5,7 +5,7 @@ WITH month_avg AS (
         MAX(maxtemp_c) AS max_temp_monthly,
         MIN(mintemp_c) AS min_temp_monthly
     FROM {{ref('prep_temp')}}
-    GROUP BY city, country, year, month
+    GROUP BY city, country, year, month, lat, lon
 )
 SELECT *
 FROM month_avg
