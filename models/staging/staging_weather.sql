@@ -3,10 +3,10 @@ WITH temperature_daily AS (
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'maxtemp_c')::VARCHAR)::FLOAT AS maxtemp_c,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'mintemp_c')::VARCHAR)::FLOAT AS mintemp_c,
         ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'avgtemp_c')::VARCHAR)::FLOAT AS avgtemp_c,
+        ((extracted_data -> 'forecast' -> 'forecastday' -> 0 -> 'day' -> 'avghumidity')::VARCHAR)::FLOAT AS avghumidity,
         (extracted_data -> 'location' -> 'name')::VARCHAR  AS city,
         (extracted_data -> 'location' -> 'region')::VARCHAR  AS region,
         (extracted_data -> 'location' -> 'country')::VARCHAR  AS country,
-        (extracted_data -> 'location' -> 'continent')::VARCHAR  AS continent,
         ((extracted_data -> 'location' -> 'lat')::VARCHAR)::NUMERIC  AS lat,
         ((extracted_data -> 'location' -> 'lon')::VARCHAR)::NUMERIC  AS lon
     FROM {{source("staging", "raw_temp")}}),
@@ -16,10 +16,10 @@ WITH temperature_daily AS (
                 maxtemp_c as maxtemp_c,
                 mintemp_c,
                 avgtemp_c,
+                avghumidity,
                 substring(city, 2, (length(city)-2)) as city,
                 substring(region, 2, (length(region)-2)) as region,
                 substring(country, 2, (length(country)-2)) as country,
-                substring(continent, 2, (length(continent)-2)) as continent,
                 lat,
                 lon
             FROM temperature_daily
