@@ -6,6 +6,7 @@ WITH temperature_daily AS (
         (extracted_data -> 'location' -> 'name')::VARCHAR  AS city,
         (extracted_data -> 'location' -> 'region')::VARCHAR  AS region,
         (extracted_data -> 'location' -> 'country')::VARCHAR  AS country,
+        (extracted_data -> 'location' -> 'continent')::VARCHAR  AS continent,
         ((extracted_data -> 'location' -> 'lat')::VARCHAR)::NUMERIC  AS lat,
         ((extracted_data -> 'location' -> 'lon')::VARCHAR)::NUMERIC  AS lon
     FROM {{source("staging", "raw_temp")}}),
@@ -18,6 +19,7 @@ WITH temperature_daily AS (
                 substring(city, 2, (length(city)-2)) as city,
                 substring(region, 2, (length(region)-2)) as region,
                 substring(country, 2, (length(country)-2)) as country,
+                substring(continent, 2, (length(continent)-2)) as continent,
                 lat,
                 lon
             FROM temperature_daily
