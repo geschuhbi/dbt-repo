@@ -6,8 +6,8 @@ add_datetime_info AS (
     SELECT *,
         to_char(date, 'Day') AS weekday, 
         to_char(date, 'DD') AS day_num,
-        to_char(date, 'MM') AS month, 
-        to_char(date, 'Month') AS month_l,
+        to_char(date, 'MM') AS month_num, 
+        to_char(date, 'Month') AS month,
         to_char(date, 'IYYY') AS year,
         to_char(date, 'WW') AS week  
     FROM temperature_daily
