@@ -1,6 +1,6 @@
 WITH month_avg AS (
     SELECT
-        city, country,year, month, month_num lat, lon,
+        city, country,year, month, month_num, lat, lon,
         AVG(avgtemp_c) AS avg_temp_monthly,
         MAX(maxtemp_c) AS max_temp_monthly,
         MIN(mintemp_c) AS min_temp_monthly,
